@@ -69,10 +69,9 @@ const items = defineProps(['items'])
 
 <style lang="scss">
 .banner {
+  margin-bottom: 50px;
   position: relative;
-  // background: url('@/assets/bg-1.webp');
-  // background-position: top right;
-  // background-size: cover;
+
   .carousel {
     width: 95%;
     margin: auto;

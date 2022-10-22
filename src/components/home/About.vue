@@ -54,7 +54,7 @@ export default {}
       position: absolute;
       left: 0;
       top: 0;
-
+      height: -webkit-fill-available;
       @media (max-width: 768px) {
         width: 100%;
       }
