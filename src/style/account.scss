@@ -1,0 +1,126 @@
+.user-account {
+    min-height: 300px;
+    padding: 50px 0 200px;
+
+    @media (min-width: 768px) {
+        padding: 50px 0 100px;
+    }
+
+    &.auth {
+        min-height: 100vh;
+    }
+
+    position: relative;
+
+    .background {
+        .bg-1 {
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            max-height: 200px;
+        }
+
+        .bg-2 {
+            z-index: -1;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0.7;
+            max-height: 200px;
+        }
+
+        @media (max-width:768px) {
+            .bg-2 {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+
+    .logo-wrapper {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    h2.title,
+    h3.title {
+        margin-bottom: 30px;
+    }
+
+    h3.title {
+        font-weight: 500;
+    }
+
+    form {
+        max-width: 450px;
+        margin: 0 auto;
+
+        a.login-google {
+            background: #fff !important;
+            width: 100%;
+
+            @media (min-width: 768px) {
+                width: auto;
+            }
+
+            // min-width: 150px;
+            font: normal normal normal 12px/16px Raleway !important;
+            color: 000 !important;
+            border: 0.20000000298023224px solid #c5c5c5 !important;
+            text-transform: capitalize;
+        }
+
+        a.login-facebook {
+            width: 100%;
+
+            @media (min-width: 768px) {
+                width: auto;
+            }
+
+            background: #3c5998 !important;
+            color: #fff !important;
+            min-width: 200px;
+            font: normal normal normal 12px/16px Raleway !important;
+            text-transform: capitalize;
+        }
+
+        .bottom {
+            h4 {
+                font: normal normal normal 20px/28px Montserrat;
+
+                @media (min-width: 768px) {
+                    font: normal normal normal 22px/30px Montserrat;
+                }
+
+                letter-spacing: 0px;
+                color: #000000;
+                text-transform: capitalize;
+            }
+
+            a {
+                font: normal normal bold 20px/28px Montserrat;
+
+                @media (min-width: 768px) {
+                    font: normal normal bold 22px/30px Montserrat;
+                }
+
+                letter-spacing: 0px;
+                color: #000000;
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+
+.btn.frm-action {
+    background: $main-color !important;
+    color: #fff !important;
+    width: 100%;
+
+    @media (min-width: 768px) {
+        width: auto;
+    }
+
+    min-width: 200px;
+}

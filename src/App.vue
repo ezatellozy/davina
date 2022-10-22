@@ -1,30 +1,59 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <header v-if="!auth">
+    <main-header />
+  </header>
+  <div class="app-wrapper" id="app-wrapper">
+    <router-view v-slot="{ Component }">
+      <transition name="fade">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </div>
+  <Footer v-if="!auth" />
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script setup>
+import MainHeader from './components/MainHeader.vue'
+import Footer from './components/Footer.vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+import i18n from './i18n'
 
-nav {
-  padding: 30px;
+import { onMounted, computed, watchEffect } from 'vue'
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+const route = useRoute()
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+const store = useStore()
+
+watchEffect(() => {
+  if (
+    route.name == 'login' ||
+    route.name == 'register' ||
+    route.name == 'activate' ||
+    route.name == 'verification' ||
+    route.name == 'forget-passwrod'
+  ) {
+    store.commit('pageAuth', true)
+  } else {
+    store.commit('pageAuth', false)
   }
-}
-</style>
+})
+const auth = computed(() => store.getters.pageAuth)
+
+onMounted(() => {
+  let appWrapper = document.getElementById('app-wrapper')
+  let header = document.getElementsByTagName('header')
+  let footer = document.getElementsByTagName('footer')
+  document.addEventListener('touchstart', { passive: true })
+  let innerHeight = Math.abs(header[0].clientHeight - footer[0].clientHeight)
+  appWrapper.style.minHeight = `calc(100vh - ${innerHeight}px)`
+
+  if (i18n.global.locale == 'ar') {
+    document.documentElement.lang = 'ar'
+    document.body.dir = 'rtl'
+    document.body.classList.add('is-rtl')
+  }
+})
+</script>
+
+<style lang="scss"></style>
